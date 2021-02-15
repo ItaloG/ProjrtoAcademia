@@ -1,0 +1,213 @@
+package br.senai.sp.jandira.gui;
+
+	import java.awt.ItemSelectable;
+import java.awt.event.ActionEvent;
+	import java.awt.event.ActionListener;
+import java.security.PublicKey;
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+	import javax.swing.JComboBox;
+	import javax.swing.JFrame;
+	import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import br.senai.sp.jandira.model.Aluno;
+
+	public class FrameAcademia {
+		///////////////////////////////////
+		////  MÉTODO PARA CRIAR A TELA  ///
+		///////////////////////////////////
+		
+		public void criarTela(){
+			
+			//  Tela 
+			JFrame tela = new JFrame();
+			tela.setTitle("Registro Academia");
+			tela.setSize(700, 400);
+			tela.setDefaultCloseOperation(3);
+			tela.setLayout(null);
+			
+			// JLabel nome
+			JLabel labelNome = new JLabel();
+			labelNome.setText("Nome: ");
+			labelNome.setBounds(30, 40, 50, 30);
+			
+			//JTextFild nome
+			JTextField textNome = new JTextField();
+			textNome.setBounds(75, 40, 230, 30);
+			
+			
+			// JLabel Sexo
+				JLabel labelSexo = new JLabel();
+				labelSexo.setText("Sexo: ");
+				labelSexo.setBounds(30, 90, 50, 30);
+				
+			// JTextFild Sexo
+				JTextField textSexo = new JTextField();
+				textSexo.setBounds(75, 90, 130, 30);
+				
+				
+				
+			// ButtonGroup Sexo
+				ButtonGroup groupSexo = new ButtonGroup();
+				
+				JRadioButton radioFeminino = new JRadioButton();
+				groupSexo.add(radioFeminino);
+				JRadioButton radioMasculino = new JRadioButton();
+				groupSexo.add(radioMasculino);
+				
+				radioFeminino.setBounds(75, 90, 80, 30);
+				radioFeminino.setText("Feminino");
+				radioMasculino.setBounds(160, 90, 90, 30);
+				radioMasculino.setText("Masculino");
+				
+				
+			// JLabel Data
+				JLabel labelData = new JLabel();
+				labelData.setText("Data De Nascimento: ");
+				labelData.setBounds(350, 40, 130, 30);
+							
+			//JTextFild Data
+				JTextField textData = new JTextField();
+				textData.setBounds(480, 40, 100, 30);
+				
+			// JLabel Peso
+				JLabel labelPeso = new JLabel();
+				labelPeso.setText("Peso: ");
+				labelPeso.setBounds(30, 160, 130, 30);
+										
+			//JTextFild Peso
+				JTextField textPeso = new JTextField();
+				textPeso.setBounds(75, 160, 100, 30);
+				
+			// JLabel Altura
+				JLabel labelAltura = new JLabel();
+				labelAltura.setText("altura: ");
+				labelAltura.setBounds(30, 200, 130, 30);
+										
+			//JTextFild Altura
+				JTextField textAltura = new JTextField();
+				textAltura.setBounds(75, 200, 100, 30);
+				
+				
+				
+			// JLabel Atiidade
+				JLabel labelAtividade = new JLabel();
+				labelAtividade.setText("Nivel De Atividade: ");
+				labelAtividade.setBounds(350, 90, 110, 30);
+				
+//				String niveisDeAtividade[] = {
+//						"Nunhema", 
+//						"Leve", 
+//						"Moderada", 
+//						"Intensa"};
+//				
+//				// JcomboBox Atiidade
+//				JComboBox<String> combo = new JComboBox<String>(niveisDeAtividade);
+//				combo.setBounds(480, 90, 130, 30);
+				
+			
+				// ButtonGroup Nivel de Atividade
+				ButtonGroup groupAtividade1 = new ButtonGroup();
+				
+				JRadioButton radioNenhuma = new JRadioButton();
+				groupAtividade1.add(radioNenhuma);
+				JRadioButton radioLeve = new JRadioButton();
+				groupAtividade1.add(radioLeve);
+				
+				radioLeve.setBounds(460, 110, 90, 30);
+				radioLeve.setText("Leve");
+				radioNenhuma.setBounds(460, 90, 90, 30);
+				radioNenhuma.setText("Nenhuma");
+				
+				
+
+				// JLabel IMC
+				JLabel labelImc = new JLabel();
+				labelImc.setText("IMC: ");
+				labelImc.setBounds(350, 160, 530, 30);
+				
+				// JLabel NCD
+				JLabel labelNcd = new JLabel();
+				labelNcd.setText("NCD: ");
+				labelNcd.setBounds(350, 200, 130, 30);
+				
+				// Jbutton Calcular
+				JButton btnCalcular = new JButton();
+				btnCalcular.setText("Calcular");
+				btnCalcular.setBounds(30, 260, 110, 50);
+				
+				// Jbutton Limpar
+				JButton btnLimpar = new JButton();
+				btnLimpar.setText("Limpar");
+				btnLimpar.setBounds(150, 260, 110, 50);
+				
+				
+				
+			tela.getContentPane().add(textNome);
+			tela.getContentPane().add(labelNome);
+			tela.getContentPane().add(labelSexo);
+			tela.getContentPane().add(textData);
+			tela.getContentPane().add(labelData);
+			tela.getContentPane().add(textPeso);
+			tela.getContentPane().add(labelPeso);
+			tela.getContentPane().add(textAltura);
+			tela.getContentPane().add(labelAltura);
+			tela.getContentPane().add(labelAtividade);
+//			tela.getContentPane().add(combo);
+			tela.getContentPane().add(radioLeve);
+			tela.getContentPane().add(radioNenhuma);
+			
+//			tela.getContentPane().add(labelImc);
+//			tela.getContentPane().add(labelNcd);
+			tela.getContentPane().add(btnCalcular);
+			tela.getContentPane().add(btnLimpar);
+			tela.getContentPane().add(radioFeminino);
+			tela.getContentPane().add(radioMasculino);
+			
+			
+			tela.setVisible(true);
+			
+			// Eventos
+			// Calcular
+			btnCalcular.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Aluno a1 = new Aluno();
+					DecimalFormat formato = new DecimalFormat("00.0");
+					
+					
+					a1.setDataDeNascimento(LocalDate.of(2004, 07, 03));
+//					a1.setNivelDeAtividade(combo.getItemAt(0));
+					a1.setSexo(radioFeminino.isSelected()?'m':'f');
+					a1.setAltura(Double.parseDouble(textAltura.getText()));
+					a1.setPeso(Double.parseDouble(textPeso.getText()));
+					
+					labelImc.setText("IMC:  " + String.valueOf(formato.format(a1.getImc()) + "   " + a1.getStatusImc()));
+					labelNcd.setText("NCD:  " + String.valueOf(formato.format(a1.getNcd()) + a1.getFalha()));
+				}
+			});
+			
+			// Limpar
+			btnLimpar.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					labelImc.setText("IMC:  ");
+					labelNcd.setText("NCD:  ");
+					textAltura.setText("");
+					textData.setText("");
+					textNome.setText("");
+					textPeso.setText("");
+				}
+			});
+			
+		}
+		
+	}
+
